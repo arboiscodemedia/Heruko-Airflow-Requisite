@@ -1,0 +1,53 @@
+
+   1. Install heroku
+       curl https://cli-assets.heroku.com/install.sh | sh
+   
+    you'll need to include -a your-app-name at the end of every command you run that's app-specific.
+
+   2. Login to Heroku Website
+      heroku login
+         
+   3. create your app 
+      heroku create heroku-airflow
+
+   4.  Create Heroku Postgresql
+       heroku addons:create heroku-postgresql:hobby-dev -a heroku-airflow
+
+   5.  Setup Heroku Config
+
+       heroku config -a heroku-airflow
+
+       heroku config:set AIRFLOW__CORE__SQL_ALCHEMY_CONN = "postgresql://" 
+       heroku config:set AIRFLOW__CORE__LOAD_EXAMPLES=False -a heroku-airflow
+       heroku config:set AIRFLOW_HOME=/app -a heroku-airflow
+
+       Run this line in Python
+
+       >>>from cryptography.fernet import Fernet; 
+       >>>print(Fernet.generate_key().decode())
+
+             5KaIPunwNmSisZ48JIhfsZoHTlgZ6qGgt4Hq0yUGxN8=
+
+       heroku config:set AIRFLOW__CORE__FERNET_KEY=<secret_key> -a heroku-airflow
+
+    6. Push to Heroku Master
+       git push heroku master
+
+    7. Check if no error
+       heroku logs --tail -a heroku-airflow  
+    8. Modify Procfile
+       web: airflow webserver --port $PORT
+    9. Setup Additional Heroku Config.      
+         heroku config:set AIRFLOW__WEBSERVER__AUTHENTICATE=True -a heroku-airflow
+         heroku config:set AIRFLOW__WEBSERVER__AUTH_BACKEND=airflow.contrib.auth.backends.password_auth -a heroku-airflow
+    11. git update
+         git add .
+         git commit -m "change Procfile to start the webserver"
+         git push heroku master
+    12 Check if no error
+       heroku logs --tail -a heroku-airflow  
+    13 Preview
+        Login to Heroku and goto app then click "open app"  
+
+
+

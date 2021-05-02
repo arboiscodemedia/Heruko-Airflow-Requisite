@@ -1,0 +1,65 @@
+
+
+1. create a user account using ssh into the Heroku instance of our app:
+
+     heroku run bash -a heroku-airflow
+     
+     airflow users create -r Admin -u admin -e arboiscodemedia@gmail.com -f Ricardo -l Arbois -p heroku2021
+
+2. exit bash
+   
+      exit
+
+
+3. Login using the admin account using the information created earlier.
+ 
+4. Create a sample dag file inside a dags folder
+        Create folder name "dags" then create a dag file name "hellodags.py"
+
+
+
+
+ from datetime import datetime
+ from airflow import DAG
+ from airflow.operators.dummy_operator import DummyOperator
+ from airflow.operators.python_operator import PythonOperator
+
+  def print_hello():
+    return 'Hello world!'
+
+  dag = DAG('hello_world', description='Simple tutorial DAG',
+          schedule_interval='0 12 * * *',
+          start_date=datetime(2017, 3, 20), catchup=False)
+
+  dummy_operator = DummyOperator(task_id='dummy_task', retries=3, dag=dag)
+
+  hello_operator = PythonOperator(task_id='hello_task', python_callable=print_hello, dag=dag)
+
+  dummy_operator >> hello_operator
+
+
+5. Update dags in git
+     git add dags
+     git commit -m "create hello dag"
+
+6. update Procfile by setting up the auto webserver and scheduler
+
+     web: airflow webserver --port $PORT --daemon & airflow scheduler
+
+7. update the changes using git
+
+   git add Procfile
+   git commit -m "change Procfile to run the webserver as daemon and scheduler as main app"
+
+8. Finally update changes to heroku master
+
+   git push heroku master
+
+9. Login again to airflow for checking
+
+10. If there no dags file display in the list then run again this line settings below then check again
+
+   heroku config:set AIRFLOW_HOME=/app -a heroku-airflow
+    
+    Then reload the airflow website to see changes.
+ 

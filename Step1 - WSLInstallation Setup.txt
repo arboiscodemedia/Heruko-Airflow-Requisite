@@ -1,0 +1,37 @@
+  
+
+ Enabling Windows Subsystem for Linux using Settings
+  To install WSL using Setting on Windows 10, use these steps:
+
+  1. Open Settings.
+  2. Click on Apps.
+  3. Under the "Related settings" section, click the Programs and Features option.
+  4. Click the Turn Windows features on or off option from the left pane.  
+  5. Check the Windows Subsystem for Linux option.
+  6. Click the OK button.
+  7. Click the Restart now button.
+
+
+  Installing Linux distros using Microsoft Store
+  To install a distribution of Linux on Windows 10, use these steps:
+
+  1. Open Microsoft Store.
+  2. Search for the Linux distribution that you want to install.
+
+   Some of the distros available include:
+
+  Ubuntu.
+  OpenSuse Leap 15.
+  Kali Linux.
+  Debian.
+  Alpine WSL.
+  Suse Linux Enterprise 12.
+  Select the distro of Linux to install on your device.
+
+  3. Click the Get (or Install) button.
+  4. Click the Launch button.
+  5. Create a username for the Linux distro and press Enter.
+  6. Specify a password for the distro and press Enter.
+  7. Repeat the password and press Enter to confirm.
+  8. Check if wsl alread install
+      open command prompt and type wsl

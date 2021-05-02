@@ -1,0 +1,59 @@
+  
+  The Workspace
+   
+  1. sudo apt update && sudo apt upgrade 
+  
+  2. type sudo nano /etc/wsl.conf
+ 
+   [automount] 
+    root = / 
+    options = "metadata"
+   
+
+   3. Install pip3
+
+          sudo apt-get install software-properties-common 
+          sudo apt-add-repository universe  
+          sudo apt-get install python3-pip 
+          pip3 -V
+
+    4.  Create a Workspace Folder
+           airflow_tutorial
+    5.  Open WF in VSCode then create a Virtual Environment
+
+           sudo apt-get install python3-venv
+           
+
+           python3 -m venv .venv
+           source .venv/bin/activate
+    
+    6. Copy the requirement text file and save inside the folder airflow_tutorial then install
+         
+           pip3 install -r requirements.txt
+             
+     alternative :     
+
+         - install apache airflow
+
+             pip3 --default-timeout=100 install "apache-airflow[postgres, password]" 
+      
+            
+         - save pip requirements to text file
+
+            pip3 freeze | grep -v "pkg-resources" > requirements.txt
+
+    
+   7.   create Procfile
+
+          web: airflow db init  
+
+    8. create .gitignore
+            .venv/
+            __init__.py
+            __pycache__/
+
+     9. Git Setup
+         git init
+         git add .
+         git commit -m "initial commit" 
+            
